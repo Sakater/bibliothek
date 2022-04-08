@@ -1,0 +1,47 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  port: 8080
+
+
+spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    timeout: 900
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bibliothek
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto:
+    properties:
+      hibernate:
+        dialect:
+        format_sql: true
+    show-sql: true
+    generate-ddl: true
+    #eingeben maildaten erforderlich
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+      starttls.enable: true
+    test-connection: false
+  h2:
+    console:
+      enabled: true
