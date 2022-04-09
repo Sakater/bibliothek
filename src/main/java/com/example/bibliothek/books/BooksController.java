@@ -27,6 +27,10 @@ public class BooksController {
     @GetMapping("/book")
     public List<Books> listBook(@RequestBody Requestr requestr){
         return booksService.loadBookByName(requestr);
+    }
 
+    @PostMapping("/anything")
+    public List<Books> findBySingleEntry(@RequestParam("search") String search) throws Exception {
+        return booksService.findBySingleEntry(search);
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
@@ -15,11 +14,20 @@ public interface BooksRepository extends
         JpaRepository<Books, Long> {
 
     @Transactional
-    @Query(value="SELECT b.name, b.language FROM Books b " +
+    @Query(value="SELECT b FROM Books b " +
             "WHERE b.name= :name " +
             "AND b.author= :author")
     List<Books> findByNameAndAuthor(@Param("name") String name,
                              @Param("author") String author);
+
+    @Transactional
+    @Query(value="SELECT b FROM Books b " +
+            "WHERE b.name= :search " +
+            "OR b.author= :search " +
+            "OR b.about= :search " +
+            "OR b.category= :search " +
+            "OR b.language= :search")
+    List<Books> findBySingleEntry(@Param("search") String search);
 
 
 }

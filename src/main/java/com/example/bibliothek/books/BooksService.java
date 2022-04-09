@@ -2,14 +2,10 @@ package com.example.bibliothek.books;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -20,7 +16,15 @@ public class BooksService {
     private final BooksRepository booksRepository;
 
 
-    public List<Books> loadBookByName(Requestr requestr){
+    public List<Books> findBySingleEntry(String search) throws Exception {
+        List<Books> found = booksRepository.findBySingleEntry(search);
+        if (!found.isEmpty()) {
+            return found;
+        } else throw new Exception("no matches");
+    }
+
+    public List<Books> loadBookByName(Requestr requestr) {
+
         //String name= requestr.getName();
         //String author= requestr.getAuthor();
 
@@ -39,8 +43,9 @@ public class BooksService {
         booksRepository.save(book);
         return "saved";
     }
-    public List<Books> listAllBooks(){
-       return booksRepository.findAll();
+
+    public List<Books> listAllBooks() {
+        return booksRepository.findAll();
     }
 
     /*public List<Books> listfoundbooks(String name, String author){
