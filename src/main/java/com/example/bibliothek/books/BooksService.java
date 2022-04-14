@@ -23,12 +23,12 @@ public class BooksService {
         } else throw new Exception("no matches");
     }
 
-    public List<Books> loadBookByName(Requestr requestr) {
+    public List<Books> loadBookByName(BooksRequest booksRequest) {
 
         //String name= requestr.getName();
         //String author= requestr.getAuthor();
 
-        return booksRepository.findByNameAndAuthor(requestr.getName(), requestr.getAuthor());
+        return booksRepository.findByNameAndAuthor(booksRequest.getName(), booksRequest.getAuthor());
     }
 
 

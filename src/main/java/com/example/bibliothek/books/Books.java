@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -26,7 +25,6 @@ public class Books{
             strategy = GenerationType.SEQUENCE,
             generator = "book_sequence"
     )
-
     private Long id;
     private String author;
     private LocalDate published;
@@ -35,6 +33,7 @@ public class Books{
     private Integer quantity;
     private String category;
     private String language;
+    private Long isbn;
 
 
     public Books(String author,

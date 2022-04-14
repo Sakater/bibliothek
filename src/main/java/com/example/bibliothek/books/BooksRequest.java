@@ -1,9 +1,6 @@
 package com.example.bibliothek.books;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class BooksRequest{
