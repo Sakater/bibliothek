@@ -13,10 +13,9 @@ import java.util.Optional;
 public class BooksController {
     private final BooksService booksService;
     @PostMapping("/books")
-    public String addbook(@RequestBody BooksRequest booksRequest/*,@RequestParam("book") String book*/){
-        //new BooksRequest(book);
-        booksService.addNewBook(booksRequest);
-        return "saved";
+    public String addbook(@RequestBody BooksRequest booksRequest){
+
+        return booksService.addNewBook(booksRequest);
     }
 
     @GetMapping("/books")

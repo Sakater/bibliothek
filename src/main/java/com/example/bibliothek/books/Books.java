@@ -1,31 +1,22 @@
 package com.example.bibliothek.books;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Books{
 
-    @SequenceGenerator(
-            name = "book_sequence",
-            sequenceName = "book_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "book_sequence"
-    )
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", insertable = false, updatable = false, nullable = false)
+    private UUID id;
     private String author;
     private LocalDate published;
     private String name;
@@ -36,24 +27,23 @@ public class Books{
     private Long isbn;
 
 
-    public Books(String author,
-                 LocalDate published,
-                 String name,
-                 String about,
-                 Integer quantity,
-                 String category,
-                 String language) {
-        this.author = author;
-        this.published = published;
-        this.name = name;
-        this.about = about;
-        this.quantity = quantity;
-        this.category = category;
-        this.language = language;
-    }
-
     public boolean isAvailable(){
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", published=" + published +
+                ", name='" + name + '\'' +
+                ", about='" + about + '\'' +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", language='" + language + '\'' +
+                ", isbn=" + isbn +
+                '}';
     }
 }
 

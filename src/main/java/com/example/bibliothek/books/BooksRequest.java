@@ -19,14 +19,5 @@ public class BooksRequest{
     private final Integer quantity;
     private final String category;
     private final String language;
-
-    /*public BooksRequest(@RequestParam("book") Optional<Books> books) {
-        this.author = books.get().getAuthor();
-        this.published = books.get().getPublished();
-        this.name = books.get().getName();
-        this.about = books.get().getAbout();
-        this.quantity = books.get().getQuantity();
-        this.category = books.get().getCategory();
-        this.language = books.get().getLanguage();
-    }*/
+    private final Long isbn;
 }

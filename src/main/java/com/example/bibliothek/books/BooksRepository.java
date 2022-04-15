@@ -26,7 +26,8 @@ public interface BooksRepository extends
             "OR b.author= :search " +
             "OR b.about= :search " +
             "OR b.category= :search " +
-            "OR b.language= :search")
+            "OR b.language= :search " +
+            "OR b.isbn = :search")
     List<Books> findBySingleEntry(@Param("search") String search);
 
 

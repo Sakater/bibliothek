@@ -3,9 +3,11 @@ package com.example.bibliothek.books;
 
 import lombok.AllArgsConstructor;
 import org.hibernate.criterion.Example;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -33,15 +35,19 @@ public class BooksService {
 
 
     public String addNewBook(BooksRequest request) {
-        Books book = new Books(request.getAuthor(),
+        Books book = new Books(
+                UUID.randomUUID(),
+                request.getAuthor(),
                 request.getPublished(),
                 request.getName(),
                 request.getAbout(),
                 request.getQuantity(),
                 request.getCategory(),
-                request.getLanguage());
+                request.getLanguage(),
+                request.getIsbn());
+
         booksRepository.save(book);
-        return "saved";
+        return "saved " + request.getName() +" from " +request.getAuthor();
     }
 
     public List<Books> listAllBooks() {
