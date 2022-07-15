@@ -40,8 +40,8 @@ public class BooksController {
     }
 
     @GetMapping("/book")
-    public List<Books> listBook(@RequestBody Requestr requestr) {
-        return booksService.loadBookByName(requestr);
+    public List<Books> listBook(@RequestBody BooksRequest booksRequest){
+        return booksService.loadBookByName(booksRequest);
     }
 
     @PostMapping("/anything")

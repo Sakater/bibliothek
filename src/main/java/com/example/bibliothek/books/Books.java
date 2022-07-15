@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,18 +15,10 @@ import java.time.LocalDate;
 @Entity
 public class Books{
 
-    @SequenceGenerator(
-            name = "book_sequence",
-            sequenceName = "book_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "book_sequence"
-    )
-
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", insertable = false, updatable = false, nullable = false)
+    private UUID id;
     private String author;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate published;
@@ -34,6 +27,7 @@ public class Books{
     private Integer quantity;
     private String category;
     private String language;
+    private Long isbn;
 
 
     public Books(String author,
@@ -54,6 +48,21 @@ public class Books{
 
     public boolean isAvailable(){
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", published=" + published +
+                ", name='" + name + '\'' +
+                ", about='" + about + '\'' +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", language='" + language + '\'' +
+                ", isbn=" + isbn +
+                '}';
     }
 }
 

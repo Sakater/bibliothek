@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class BooksService {
         } else throw new Exception("no matches");
     }
 
-    public List<Books> loadBookByName(Requestr requestr) {
+    public List<Books> loadBookByName(BooksRequest booksRequest) {
 
         //String name= requestr.getTitle();
         //String author= requestr.getAuthor();

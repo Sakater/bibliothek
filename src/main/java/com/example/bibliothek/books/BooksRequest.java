@@ -1,6 +1,7 @@
 package com.example.bibliothek.books;
 
 import lombok.*;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class BooksRequest {
     private final Integer quantity;
     private final String category;
     private final String language;
+    private final Long isbn;
 
     public boolean isEmpty() {
         if (this.author.isEmpty() && this.title.isEmpty() &&
