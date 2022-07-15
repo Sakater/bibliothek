@@ -1,17 +1,15 @@
 package com.example.bibliothek.books;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Books{
@@ -29,8 +27,9 @@ public class Books{
 
     private Long id;
     private String author;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate published;
-    private String name;
+    private String title;
     private String about;
     private Integer quantity;
     private String category;
@@ -39,14 +38,14 @@ public class Books{
 
     public Books(String author,
                  LocalDate published,
-                 String name,
+                 String title,
                  String about,
                  Integer quantity,
                  String category,
                  String language) {
         this.author = author;
         this.published = published;
-        this.name = name;
+        this.title = title;
         this.about = about;
         this.quantity = quantity;
         this.category = category;

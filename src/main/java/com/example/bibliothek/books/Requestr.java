@@ -10,6 +10,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class Requestr {
-    private final String name;
+    private final String title;
     private final String author;
 }

@@ -2,7 +2,6 @@ package com.example.bibliothek.books;
 
 
 import lombok.AllArgsConstructor;
-import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,23 +24,26 @@ public class BooksService {
 
     public List<Books> loadBookByName(Requestr requestr) {
 
-        //String name= requestr.getName();
+        //String name= requestr.getTitle();
         //String author= requestr.getAuthor();
 
-        return booksRepository.findByNameAndAuthor(requestr.getName(), requestr.getAuthor());
+        return booksRepository.findByNameAndAuthor(requestr.getTitle(), requestr.getAuthor());
     }
 
 
     public String addNewBook(BooksRequest request) {
-        Books book = new Books(request.getAuthor(),
-                request.getPublished(),
-                request.getName(),
-                request.getAbout(),
-                request.getQuantity(),
-                request.getCategory(),
-                request.getLanguage());
-        booksRepository.save(book);
-        return "saved";
+        if (!request.isEmpty()){
+            Books book = new Books(request.getAuthor(),
+                    request.getPublished(),
+                    request.getTitle(),
+                    request.getAbout(),
+                    request.getQuantity(),
+                    request.getCategory(),
+                    request.getLanguage());
+            booksRepository.save(book);
+            return "saved";
+        }
+        return "empty";
     }
 
     public List<Books> listAllBooks() {

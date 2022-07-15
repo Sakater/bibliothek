@@ -45,3 +45,6 @@ spring:
   h2:
     console:
       enabled: true
+  mvc:
+    format:
+      date: dd.MM.yyy

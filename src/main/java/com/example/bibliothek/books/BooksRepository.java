@@ -15,14 +15,14 @@ public interface BooksRepository extends
 
     @Transactional
     @Query(value="SELECT b FROM Books b " +
-            "WHERE b.name= :name " +
+            "WHERE b.title= :title " +
             "AND b.author= :author")
-    List<Books> findByNameAndAuthor(@Param("name") String name,
+    List<Books> findByNameAndAuthor(@Param("title") String title,
                              @Param("author") String author);
 
     @Transactional
     @Query(value="SELECT b FROM Books b " +
-            "WHERE b.name= :search " +
+            "WHERE b.title= :search " +
             "OR b.author= :search " +
             "OR b.about= :search " +
             "OR b.category= :search " +

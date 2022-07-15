@@ -1,35 +1,32 @@
 package com.example.bibliothek.books;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class BooksRequest{
+public class BooksRequest {
     private final String author;
+    //@DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private final LocalDate published;
-    private final String name;
+    private final String title;
     private final String about;
     private final Integer quantity;
     private final String category;
     private final String language;
 
-    /*public BooksRequest(@RequestParam("book") Optional<Books> books) {
-        this.author = books.get().getAuthor();
-        this.published = books.get().getPublished();
-        this.name = books.get().getName();
-        this.about = books.get().getAbout();
-        this.quantity = books.get().getQuantity();
-        this.category = books.get().getCategory();
-        this.language = books.get().getLanguage();
-    }*/
+    public boolean isEmpty() {
+        if (this.author.isEmpty() && this.title.isEmpty() &&
+                this.about.isEmpty()  && this.category.isEmpty() &&
+                this.language.isEmpty() && this.published==null &&
+                this.quantity == null) {
+            return true;
+        }
+        return false;
+    }
 }
