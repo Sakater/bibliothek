@@ -22,12 +22,12 @@ public interface BooksRepository extends
 
     @Transactional
     @Query(value="SELECT b FROM Books b " +
-            "WHERE b.title= :search " +
-            "OR b.author= :search " +
-            "OR b.about= :search " +
-            "OR b.category= :search " +
-            "OR b.language= :search " +
-            "OR b.isbn = :search")
+            "WHERE b.title LIKE %:search% " +
+            "OR b.author LIKE %:search% " +
+            "OR b.about LIKE %:search% " +
+            "OR b.category LIKE %:search% " +
+            "OR b.language LIKE %:search% " +
+            "OR b.isbn LIKE %:search%")
     List<Books> findBySingleEntry(@Param("search") String search);
 
 

@@ -21,7 +21,7 @@ public class BooksController {
 
     //TODO: muss noch bearbeitet werden, damit auf die gleiche Seite, mit der jeweiligen Nachricht geleitet werden kann
     @PostMapping(path = "/addnewbook", consumes = "application/x-www-form-urlencoded")
-    public RedirectView addbook(BooksRequest booksRequest, Model model) {
+    public String addbook(BooksRequest booksRequest, Model model) {
         //new BooksRequest(book);
         String status = booksService.addNewBook(booksRequest);
         if (status == "saved") {
@@ -30,7 +30,7 @@ public class BooksController {
             model.addAttribute("status", "you have to fill at least one field");
         }
         htmlController.addbook(model);
-        return new RedirectView("addbook");
+        return model.getAttribute("status").toString();
 
     }
 

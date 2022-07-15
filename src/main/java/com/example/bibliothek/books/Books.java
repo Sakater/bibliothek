@@ -13,11 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Books{
+public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", insertable = false, updatable = false, nullable = false)
+    @Column(name = "id", insertable = false, updatable = false, nullable = false)
     private UUID id;
     private String author;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -36,7 +36,8 @@ public class Books{
                  String about,
                  Integer quantity,
                  String category,
-                 String language) {
+                 String language,
+                 Long isbn) {
         this.author = author;
         this.published = published;
         this.title = title;
@@ -44,9 +45,10 @@ public class Books{
         this.quantity = quantity;
         this.category = category;
         this.language = language;
+        this.isbn = isbn;
     }
 
-    public boolean isAvailable(){
+    public boolean isAvailable() {
         return true;
     }
 
@@ -56,7 +58,7 @@ public class Books{
                 "id=" + id +
                 ", author='" + author + '\'' +
                 ", published=" + published +
-                ", name='" + name + '\'' +
+                ", name='" + title + '\'' +
                 ", about='" + about + '\'' +
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +

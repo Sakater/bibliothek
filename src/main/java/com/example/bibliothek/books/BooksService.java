@@ -28,7 +28,7 @@ public class BooksService {
         //String name= requestr.getTitle();
         //String author= requestr.getAuthor();
 
-        return booksRepository.findByNameAndAuthor(requestr.getTitle(), requestr.getAuthor());
+        return booksRepository.findByNameAndAuthor(booksRequest.getTitle(), booksRequest.getAuthor());
     }
 
 
@@ -40,7 +40,8 @@ public class BooksService {
                     request.getAbout(),
                     request.getQuantity(),
                     request.getCategory(),
-                    request.getLanguage());
+                    request.getLanguage(),
+                    request.getIsbn());
             booksRepository.save(book);
             return "saved";
         }
