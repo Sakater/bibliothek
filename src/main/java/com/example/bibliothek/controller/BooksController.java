@@ -1,13 +1,11 @@
-package com.example.bibliothek.books;
+package com.example.bibliothek.controller;
 
-import com.example.bibliothek.HtmlController;
+import com.example.bibliothek.entity.Books;
+import com.example.bibliothek.service.BooksService;
+import com.example.bibliothek.dto.BooksRequest;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class BooksController {
         if (status == "saved") {
             model.addAttribute("status", "saved");
         } else {
-            model.addAttribute("status", "you have to fill at least one field");
+            model.addAttribute("status", "you have to fill in at least one field");
         }
         htmlController.addbook(model);
         return model.getAttribute("status").toString();

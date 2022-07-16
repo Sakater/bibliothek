@@ -1,11 +1,13 @@
-package com.example.bibliothek.books;
+package com.example.bibliothek.service;
 
 
+import com.example.bibliothek.entity.Books;
+import com.example.bibliothek.dto.BooksRequest;
+import com.example.bibliothek.repository.BooksRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor

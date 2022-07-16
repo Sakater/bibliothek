@@ -1,4 +1,4 @@
-package com.example.bibliothek.books;
+package com.example.bibliothek.dto;
 
 import lombok.*;
 import org.springframework.web.bind.annotation.RequestParam;

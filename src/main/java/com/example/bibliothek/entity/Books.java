@@ -1,4 +1,4 @@
-package com.example.bibliothek.books;
+package com.example.bibliothek.entity;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

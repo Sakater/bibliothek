@@ -1,5 +1,6 @@
-package com.example.bibliothek.books;
+package com.example.bibliothek.repository;
 
+import com.example.bibliothek.entity.Books;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

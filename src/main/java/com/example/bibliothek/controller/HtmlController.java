@@ -1,15 +1,11 @@
-package com.example.bibliothek;
+package com.example.bibliothek.controller;
 
-import com.example.bibliothek.books.Books;
-import com.example.bibliothek.books.BooksService;
+import com.example.bibliothek.entity.Books;
+import com.example.bibliothek.service.BooksService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
