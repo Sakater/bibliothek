@@ -1,10 +1,12 @@
 package com.example.bibliothek.service;
 
 
+import com.example.bibliothek.dto.BooksResponse;
 import com.example.bibliothek.entity.Books;
 import com.example.bibliothek.dto.BooksRequest;
 import com.example.bibliothek.repository.BooksRepository;
 import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,36 +20,35 @@ public class BooksService {
     private final BooksRepository booksRepository;
 
 
-    public List<Books> findBySingleEntry(String search) throws Exception {
-        List<Books> found = booksRepository.findBySingleEntry(search);
+    public List<BooksRequest> findBySingleEntry(String search) throws Exception {
+        List<BooksRequest> found = booksRepository.findBySingleEntry(search);
         if (!found.isEmpty()) {
             return found;
         } else throw new Exception("no matches");
     }
 
-    public List<Books> loadBookByName(BooksRequest booksRequest) {
+    public List<BooksRequest> loadBookByName(BooksRequest request) {
 
         //String name= requestr.getTitle();
         //String author= requestr.getAuthor();
 
-        return booksRepository.findByNameAndAuthor(booksRequest.getTitle(), booksRequest.getAuthor());
+        return booksRepository.findByName(request.getTitle());
     }
 
 
-    public String addNewBook(BooksRequest request) {
-        if (!request.isEmpty()){
-            Books book = new Books(request.getAuthor(),
+    public String addNewBook(@NotNull BooksRequest request) {
+        //if (!request.isEmpty()){
+        booksRepository.save(new Books(request.getAuthor(),
                     request.getPublished(),
                     request.getTitle(),
                     request.getAbout(),
                     request.getQuantity(),
                     request.getCategory(),
                     request.getLanguage(),
-                    request.getIsbn());
-            booksRepository.save(book);
+                    request.getIsbn()));
             return "saved";
-        }
-        return "empty";
+       // }
+        //return "empty";
     }
 
     public List<Books> listAllBooks() {

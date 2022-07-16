@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 @Transactional(readOnly = true)
-public interface AppUsersRepository extends JpaRepository<AppUsers, UUID> {
+public interface AppUsersRepository extends
+        JpaRepository<AppUsers, UUID> {
 
 }

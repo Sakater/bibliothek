@@ -9,9 +9,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@EqualsAndHashCode
 public class Books {
 
     @Id
@@ -29,6 +29,7 @@ public class Books {
     private Long isbn;
 
 
+
     public Books(String author,
                  LocalDate published,
                  String title,
@@ -42,12 +43,15 @@ public class Books {
         this.title = title;
         this.about = about;
         this.quantity = quantity;
-        this.category = category;
+        this.category =  category;
         this.language = language;
         this.isbn = isbn;
     }
 
     public boolean isAvailable() {
+        if ((this.quantity==null||this.quantity<1)){
+            return false;
+        }
         return true;
     }
 
@@ -62,8 +66,8 @@ public class Books {
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +
                 ", language='" + language + '\'' +
-                ", isbn=" + isbn +
-                '}';
+                ", isbn='" + isbn + '\'' +
+                "}";
     }
 }
 

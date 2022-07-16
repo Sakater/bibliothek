@@ -1,4 +1,4 @@
-#outer_border{
+#outer_border {
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 50px;
@@ -6,10 +6,12 @@
     border-color: darkcyan;
     border-width: medium;
 }
-#border_line{
+
+#border_line {
     padding: 50px 50px 50px 50px;
 }
-#save{
+
+#save {
     padding: 30px 60px !important;
     display: block !important;
 }
@@ -25,9 +27,13 @@
     padding: 8px;
 }
 
-.table tr:nth-child(even){background-color: #a6a6a6;}
+.table tr:nth-child(even) {
+    background-color: #a6a6a6;
+}
 
-.table tr:hover {background-color: #ddd;}
+.table tr:hover {
+    background-color: #ddd;
+}
 
 .table th {
     padding-top: 12px;
@@ -36,23 +42,28 @@
     background-color: #048caa;
     color: white;
 }
+
 .draggable {
     cursor: move;
     user-select: none;
 }
+
 .placeholder {
     background-color: #edf2f7;
     border: 2px dashed #cbd5e0;
 }
+
 .clone-list {
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
     display: flex;
 }
+
 .clone-table {
     border-collapse: collapse;
     border: none;
 }
+
 .clone-table th,
 .clone-table td {
     border: 1px solid #ccc;
@@ -60,9 +71,16 @@
     border-top: none;
     padding: 0.5rem;
 }
+
 .dragging {
     background: #fff;
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
     z-index: 999;
+}
+
+#header_title {
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: 20px;
 }

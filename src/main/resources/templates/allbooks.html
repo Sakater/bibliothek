@@ -53,7 +53,7 @@
 <script>
 
     $.getJSON('http://localhost:8080/books', function (data) {
-        var myArray = data;
+        let myArray = data;
         buildTable(myArray)
 
         $('th').on('click', function () {
@@ -95,7 +95,6 @@
 
         for (var i = 0; i < data.length; i++) {
             value = value.toLowerCase()
-            console.log('Value: ', value)
             var title = data[i].title.toLowerCase()
             var author = data[i].author.toLowerCase()
             var about = data[i].about.toLowerCase()

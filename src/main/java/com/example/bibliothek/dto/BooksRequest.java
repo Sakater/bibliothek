@@ -4,29 +4,37 @@ import lombok.*;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Getter
-@RequiredArgsConstructor
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class BooksRequest {
-    private final String author;
+    private String author;
     //@DateTimeFormat(pattern = "dd-MM-yyyy")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private final LocalDate published;
-    private final String title;
-    private final String about;
-    private final Integer quantity;
-    private final String category;
-    private final String language;
-    private final Long isbn;
+
+    private String title;
+    private String about;
+    private String category;
+    private String language;
+    private Long isbn;
+    private LocalDate published;
+    private Integer quantity;
+
+
 
     public boolean isEmpty() {
-        if (this.author.isEmpty() && this.title.isEmpty() &&
-                this.about.isEmpty()  && this.category.isEmpty() &&
-                this.language.isEmpty() && this.published==null &&
-                this.quantity == null) {
+        if (author.isEmpty() && title.isEmpty() &&
+                about.isEmpty() && category.isEmpty() &&
+                language.isEmpty() && published == null &&
+                quantity == null && isbn.toString().isEmpty()) {
             return true;
         }
         return false;
