@@ -7,7 +7,7 @@ server:
 
 spring:
   session:
-    store-type: jdbc
+    store-type: Jdbc
     jdbc:
       initialize-schema: always
     timeout: 900
@@ -18,7 +18,7 @@ spring:
     password: buecher
   jpa:
     hibernate:
-      ddl-auto:
+      ddl-auto: update
     properties:
       hibernate:
         dialect:
@@ -45,6 +45,3 @@ spring:
   h2:
     console:
       enabled: true
-  mvc:
-    format:
-      date: dd.MM.yyy

@@ -1,4 +1,4 @@
-package com.example.bibliothek.dto;
+package com.example.bibliothek.books;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;

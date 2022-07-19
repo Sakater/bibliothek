@@ -1,11 +1,8 @@
-package com.example.bibliothek.dto;
+package com.example.bibliothek.books;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Getter

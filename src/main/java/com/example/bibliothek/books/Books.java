@@ -1,4 +1,4 @@
-package com.example.bibliothek.entity;
+package com.example.bibliothek.books;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Getter
 @Setter
@@ -15,9 +17,14 @@ import java.util.UUID;
 public class Books {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "books_sequence",
+            sequenceName = "books_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = SEQUENCE, generator = "books_sequence")
     @Column(name = "id", insertable = false, updatable = false, nullable = false)
-    private UUID id;
+    private Long id;
     private String author;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate published;

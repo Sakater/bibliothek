@@ -1,30 +1,28 @@
-package com.example.bibliothek.repository;
+package com.example.bibliothek.books;
 
-import com.example.bibliothek.dto.BooksRequest;
-import com.example.bibliothek.dto.BooksResponse;
-import com.example.bibliothek.entity.Books;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.UUID;
 
 @Repository
 @Transactional(readOnly = true)
 public interface BooksRepository extends
-        JpaRepository<Books, UUID> {
+        JpaRepository<Books, Long> {
 
     @Transactional
-    @Query("SELECT new com.example.bibliothek.dto.BooksRequest(" +
+    @Query("SELECT new com.example.bibliothek.books.BooksRequest(" +
             "b.title, b.author, " +
             "b.about, b.category, " +
             "b.language, b.isbn, " +
             "b.published, b.quantity) FROM Books b " +
             "WHERE b.title LIKE %:title%")
-    List<BooksRequest> findByName(@Param("title") String title);
+    List<BooksRequest> findByNameContaining(@Param("title") String title);
 
     @Transactional
     @Query("SELECT b FROM Books b " +
@@ -35,5 +33,7 @@ public interface BooksRepository extends
             "OR b.language LIKE %:search% " +
             "OR b.isbn LIKE %:search%")
     List<BooksRequest> findBySingleEntry(@Param("search") String search);
+
+    Books findBooksByIsbn(Long isbn);
 
 }

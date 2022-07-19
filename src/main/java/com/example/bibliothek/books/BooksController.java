@@ -1,15 +1,9 @@
-package com.example.bibliothek.controller;
+package com.example.bibliothek.books;
 
-import com.example.bibliothek.dto.BooksResponse;
-import com.example.bibliothek.entity.Books;
-import com.example.bibliothek.service.BooksService;
-import com.example.bibliothek.dto.BooksRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 
 @RestController
@@ -40,5 +34,9 @@ public class BooksController {
     @GetMapping("/anything")
     public List<BooksRequest> findBySingleEntry(@RequestParam("search") String search) throws Exception {
         return booksService.findBySingleEntry(search);
+    }
+    @PostMapping("/addnewbooks")
+    public void add(){
+        booksService.addbunchofnewbooks();
     }
 }

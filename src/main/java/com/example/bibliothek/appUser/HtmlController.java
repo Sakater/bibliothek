@@ -1,7 +1,7 @@
 /*package com.example.bibliothek.controller;
 
-import com.example.bibliothek.entity.Books;
-import com.example.bibliothek.service.BooksService;
+import com.example.bibliothek.books.Books;
+import com.example.bibliothek.books.BooksService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
