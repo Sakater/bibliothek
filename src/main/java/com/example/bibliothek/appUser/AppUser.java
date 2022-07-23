@@ -30,7 +30,7 @@ public class AppUser implements UserDetails {
             allocationSize = 1
     )
     @GeneratedValue(strategy = SEQUENCE, generator = "app_user_sequence")
-    @Column(name = "userId", insertable = false, updatable = false, nullable = false)
+    @Column(name = "user_id", insertable = false, updatable = false, nullable = false)
     private Long userId;
     private String firstName;
     private String lastName;
@@ -39,6 +39,7 @@ public class AppUser implements UserDetails {
     private LocalDate birthdate;
     @Enumerated(EnumType.STRING)
     private AppUserRoles role;
+
 
     @Column(
             unique = true

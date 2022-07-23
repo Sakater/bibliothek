@@ -97,6 +97,16 @@ public class BooksService {
         return booksRepository.findAll();
     }
 
+    public void borrowBook(Books book) {
+        int quantity= book.getQuantity();
+        if (quantity==0){
+            throw new IllegalStateException("Book currently not available!");
+        }
+        quantity-=1;
+        book.setQuantity(quantity);
+        booksRepository.save(book);
+    }
+
     /*public List<Books> listfoundbooks(String name, String author){
         return (List<Books>)booksRepository.findByNameAndAuthor(name, author);
         return booksRepository.

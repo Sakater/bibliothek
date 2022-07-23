@@ -18,24 +18,33 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Library_borrow")
+@Table(
+        name = "Library_borrow",
+        indexes = {
+                @Index(name = "user_id", columnList = "user_id"),
+                @Index(name = "books_id", columnList = "books_id")
+        }
+)
+//        indexes ={@Index(name = "books_id", columnList = "books_id")})
 public class Library {
 
     public Library(AppUser appUser, Books book) {
         this.appUser = appUser;
-        this.dateBorrowed= LocalDate.now();
+        this.dateBorrowed = LocalDate.now();
         this.expiresBorrow = dateBorrowed.plusMonths(1);
-        this.books=book;
+        this.books = book;
     }
 
-    @Id
     @SequenceGenerator(
             name = "borrowed_books_sequence",
             sequenceName = "borrowed_books_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(strategy = SEQUENCE, generator = "borrowed_books_sequence")
-    private Long id;
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "borrowed_books_sequence")
+    @Id
+    private Long libId;
 
     private LocalDate dateBorrowed;
     private LocalDate expiresBorrow;
@@ -52,15 +61,15 @@ public class Library {
     private Books books;
 
     @ManyToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.MERGE
     )
     @JoinColumn(
             name = "user_id",
             nullable = false,
-            referencedColumnName = "userId"
+            referencedColumnName = "user_id"
+            //foreignKey = {@ForeignKey( value = ConstraintMode.CONSTRAINT)}
     )
     private AppUser appUser;
-
 
 
 }
