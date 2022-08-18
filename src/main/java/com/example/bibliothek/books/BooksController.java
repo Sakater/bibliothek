@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+//@RequestMapping("api/v1/books")
 public class BooksController {
     private final BooksService booksService;
     // private final HtmlController htmlController;
@@ -21,9 +22,10 @@ public class BooksController {
         return status;
     }
 
+    // @CrossOrigin("*")
     @GetMapping("/books")
-    public List<Books> listAllBooks() {
-        return booksService.listAllBooks();
+    public String/*List<Books>*/ listAllBooks() {
+        return "Successful";//booksService.listAllBooks();
     }
 
     @GetMapping("/bookname")
@@ -35,8 +37,9 @@ public class BooksController {
     public List<BooksRequest> findBySingleEntry(@RequestParam("search") String search) throws Exception {
         return booksService.findBySingleEntry(search);
     }
+
     @PostMapping("/addnewbooks")
-    public void add(){
+    public void add() {
         booksService.addbunchofnewbooks();
     }
 }

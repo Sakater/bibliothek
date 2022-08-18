@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/registration")
+@RequestMapping("api/v1/registration")
 @Slf4j
 @AllArgsConstructor
 public class RegistrationController {
@@ -24,17 +24,17 @@ public class RegistrationController {
     private final AppUserService appUserService;
     private final PasswordTokenService passwordTokenService;
 
-    @PostMapping
+    @PostMapping("/register")
     public String register(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
     }
 
-    @GetMapping(path = "confirm")
+    @GetMapping(path = "/confirm")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
     }
 
-    @GetMapping("resendVerifyToken")
+    @GetMapping("/resendVerifyToken")
     public String resendVerificationToken(@RequestParam("email") String email,
                                           HttpServletRequest request) {
         //find AppUser with Email in Parameter
@@ -43,34 +43,35 @@ public class RegistrationController {
         //
         ConfirmationToken confirmationToken = confirmationTokenService.verifyNewToken(appUser);
 
-        //Build an URL
-        String url=registrationService.resendVerificationTokenMail(
-                        appUser,
-                        registrationService.applicationUrl(request),
-                        confirmationToken);
+        //Build a URL
+        String url = registrationService.resendVerificationTokenMail(
+                appUser,
+                registrationService.applicationUrl(request),
+                confirmationToken);
         return "Click the link to verify your account: " + url;
     }
+
     @PostMapping("/resetPassword")
-    public String resetPassword(@RequestBody PasswordRequest passwordRequest, HttpServletRequest request){
-        AppUser appUser= (AppUser) appUserService.loadUserByUsername(passwordRequest.getEmail());
-        String url="";
-        String token= UUID.randomUUID().toString();
+    public String resetPassword(@RequestBody PasswordRequest passwordRequest, HttpServletRequest request) {
+        AppUser appUser = (AppUser) appUserService.loadUserByUsername(passwordRequest.getEmail());
+        String url;
+        String token = UUID.randomUUID().toString();
         passwordTokenService.createPasswordResetTokenForUser(appUser, token);
-        url= passwordTokenService.passwordTokenMail(
-                appUser,registrationService.applicationUrl(request), token);
+        url = passwordTokenService.passwordTokenMail(
+                appUser, registrationService.applicationUrl(request), token);
         return url;
     }
 
     @PostMapping("/savePassword")
-    public String savePassword(@RequestParam("token")String token,
-                               @RequestBody PasswordRequest request){
-        String result= registrationService.confirmPasswordToken(token);
-        if (!result.equalsIgnoreCase("valid")){
+    public String savePassword(@RequestParam("token") String token,
+                               @RequestBody PasswordRequest request) {
+        String result = registrationService.confirmPasswordToken(token);
+        if (!result.equalsIgnoreCase("valid")) {
             return "invalid token";
         }
-        Optional<AppUser> appUser= passwordTokenService.findAppUserByPasswordToken(token);
+        Optional<AppUser> appUser = passwordTokenService.findAppUserByPasswordToken(token);
 
-        if (appUser.isPresent()){
+        if (appUser.isPresent()) {
             appUserService.changePassword(appUser.get(), request.getNewPassword());
             return "Password Reset Successfully!";
         }
@@ -78,8 +79,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/changePassword")
-    public String changePassword(@RequestBody PasswordRequest passwordRequest){
-       return registrationService.changePassword(passwordRequest);
+    public String changePassword(@RequestBody PasswordRequest passwordRequest) {
+        return registrationService.changePassword(passwordRequest);
     }
 
 
