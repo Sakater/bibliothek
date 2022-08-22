@@ -1,5 +1,5 @@
 package com.example.bibliothek.appUser;
 
 public enum AppUserRoles {
-    ADMIN, MANAGER, USER
+    ROLE_ADMIN, ROLE_MANAGER, ROLE_USER
 }

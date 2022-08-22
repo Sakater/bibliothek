@@ -5,17 +5,20 @@ import com.example.bibliothek.appUser.AppUserService;
 import com.example.bibliothek.registration.token.ConfirmationToken;
 import com.example.bibliothek.registration.token.ConfirmationTokenService;
 import com.example.bibliothek.security.PasswordRequest;
+import com.example.bibliothek.security.filter.CustomAuthorizationFilter;
 import com.example.bibliothek.security.passwordToken.PasswordTokenService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/registration")
+@RequestMapping("/api/v1/registration")
 @Slf4j
 @AllArgsConstructor
 public class RegistrationController {
@@ -81,6 +84,13 @@ public class RegistrationController {
     @PostMapping("/changePassword")
     public String changePassword(@RequestBody PasswordRequest passwordRequest) {
         return registrationService.changePassword(passwordRequest);
+    }
+
+    @GetMapping("token_refresh")
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        CustomAuthorizationFilter customAuthorizationFilter= new CustomAuthorizationFilter();
+        customAuthorizationFilter.refreshToken(request, response);
+
     }
 
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/library")
+@RequestMapping("/api/v1/library")
 public class LibraryController {
     private final BooksService booksService;
     private final LibraryService libraryService;

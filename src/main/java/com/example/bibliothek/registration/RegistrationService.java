@@ -38,7 +38,7 @@ public class RegistrationService {
                         request.getLastName(),
                         request.getEmail(),
                         request.getBirthdate(),
-                        AppUserRoles.USER,
+                        AppUserRoles.ROLE_USER,
                         request.getUserName(),
                         request.getPassword()
                 )
@@ -86,11 +86,10 @@ public class RegistrationService {
     }
 
     public String resendVerificationTokenMail(AppUser appUser, String applicationUrl, ConfirmationToken token) {
-        String url =
-                applicationUrl +
-                        "/registration/confirm?token=" +
-                        token.getToken();
-        return url;
+        return applicationUrl +
+                "/registration/confirm?token=" +
+                token.getToken();
+
     }
 
     public String applicationUrl(HttpServletRequest request) {
