@@ -4,7 +4,6 @@ import com.example.bibliothek.appUser.AppUserService;
 import com.example.bibliothek.security.filter.CustomAuthenticationFilter;
 
 import com.example.bibliothek.security.filter.CustomAuthorizationFilter;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,23 +12,16 @@ import org.springframework.security.access.expression.SecurityExpressionHandler;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.FilterInvocation;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.cors.CorsConfiguration;
-
-import java.sql.SQLOutput;
-import java.util.Arrays;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -66,10 +58,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.authorizeRequests().antMatchers("/login", "/api/v1/registration/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/books/**").hasRole("ADMIN");//permitAll();
+        http.authorizeRequests().antMatchers("/profile").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/login", "/api/v1/registration/**", "/username**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/books/**")./*hasRole("ADMIN");*/permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/books/**").hasRole("MANAGER");
         http.authorizeRequests().expressionHandler(webExpressionHandler());
+        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
         /*http.authorizeRequests().anyRequest().permitAll();*/
 
     }

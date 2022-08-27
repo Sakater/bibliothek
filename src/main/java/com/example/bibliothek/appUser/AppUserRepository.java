@@ -27,7 +27,10 @@ public interface AppUserRepository extends
 
     AppUser findAppUserByUserId(Long userId);
 
-    AppUser findAppUserByUserName(String userName);
+    @Query("SELECT a FROM AppUser a WHERE a.userName = :username")
+    AppUser findAppUserByUserName(@Param("username") String userName);
+
+
 
 }
 

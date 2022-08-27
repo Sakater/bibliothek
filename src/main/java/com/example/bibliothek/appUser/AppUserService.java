@@ -57,8 +57,8 @@ public class AppUserService implements UserDetailsService {
         );
     }
 
-    public AppUser findByUserName(String userName){
-        return appUserRepository.findAppUserByUserName(userName);
+    public AppUser findByUserName(String username){
+        return appUserRepository.findAppUserByUserName(username);
     }
 
     public int enableAppUser(String email) {
