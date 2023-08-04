@@ -1,12 +1,13 @@
 package com.example.bibliothek.books;
 
-import lombok.*;
-import org.springframework.context.annotation.Bean;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 

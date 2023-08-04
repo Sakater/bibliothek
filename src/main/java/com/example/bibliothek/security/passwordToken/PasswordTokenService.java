@@ -3,12 +3,9 @@ package com.example.bibliothek.security.passwordToken;
 import com.example.bibliothek.appUser.AppUser;
 import com.example.bibliothek.appUser.AppUserService;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DenyAll;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service

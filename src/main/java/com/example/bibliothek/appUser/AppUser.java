@@ -1,8 +1,9 @@
 package com.example.bibliothek.appUser;
 
-import com.example.bibliothek.appUser.AppUserRoles;
-import lombok.*;
-import org.springframework.context.annotation.Scope;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -79,7 +80,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return email;
     }
 
     @Override

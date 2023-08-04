@@ -1,6 +1,5 @@
 package com.example.bibliothek.registration;
 
-import com.example.bibliothek.appUser.AppUserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

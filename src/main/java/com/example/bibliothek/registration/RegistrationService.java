@@ -1,7 +1,6 @@
 package com.example.bibliothek.registration;
 
 import com.example.bibliothek.appUser.AppUser;
-import com.example.bibliothek.appUser.AppUserRepository;
 import com.example.bibliothek.appUser.AppUserRoles;
 import com.example.bibliothek.appUser.AppUserService;
 import com.example.bibliothek.registration.token.ConfirmationToken;

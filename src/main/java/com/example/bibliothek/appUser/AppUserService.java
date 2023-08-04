@@ -4,7 +4,6 @@ package com.example.bibliothek.appUser;
 import com.example.bibliothek.registration.token.ConfirmationToken;
 import com.example.bibliothek.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -58,7 +57,7 @@ public class AppUserService implements UserDetailsService {
     }
 
     public AppUser findByUserName(String username){
-        return appUserRepository.findAppUserByUserName(username);
+        return appUserRepository.findByEmail(username).get();
     }
 
     public int enableAppUser(String email) {

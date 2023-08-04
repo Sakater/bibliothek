@@ -9,23 +9,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/v1/profile")
 public class AppUserController {
 
     private final AppUserService appUserService;
@@ -52,10 +46,9 @@ public class AppUserController {
         return appUserService.findByUserName(username);
     }
 
-    @GetMapping("/profile")
+    @GetMapping("")
     public AppUser getProfile(HttpServletRequest request) {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
-        AppUser user;
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
                 String access_token = authorizationHeader.substring("Bearer ".length());
@@ -63,13 +56,12 @@ public class AppUserController {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(access_token);
                 String username = decodedJWT.getSubject();
-                user = appUserService.findByUserName(username);
+                return appUserService.findByUserName(username);
             } catch (Exception e) {
                 throw new RuntimeException(e.getMessage());
             }
         } else {
             throw new RuntimeException("You are not logged in...");
         }
-        return user;
     }
 }

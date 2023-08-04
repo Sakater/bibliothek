@@ -5,11 +5,7 @@ import com.example.bibliothek.appUser.AppUserService;
 import com.example.bibliothek.books.Books;
 import com.example.bibliothek.books.BooksService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor

@@ -2,7 +2,6 @@ package com.example.bibliothek.security.config;
 
 import com.example.bibliothek.appUser.AppUserService;
 import com.example.bibliothek.security.filter.CustomAuthenticationFilter;
-
 import com.example.bibliothek.security.filter.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -58,10 +57,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.authorizeRequests().antMatchers("/profile").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/v1/profile/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/login", "/api/v1/registration/**", "/username**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/books/**")./*hasRole("ADMIN");*/permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/books/**").hasRole("MANAGER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/v1/books/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/books/**").hasAuthority("ADMIN");
         http.authorizeRequests().expressionHandler(webExpressionHandler());
         http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
         /*http.authorizeRequests().anyRequest().permitAll();*/
